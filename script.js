@@ -1,39 +1,25 @@
 function convertToRoman(num) {
-  const obj = {
-    0: ['M', 1000],
-    1: ['D', 500],
-    2: ['C', 100],
-    3: ['L', 50],
-    4: ['X', 10],
-    5: ['V', 5],
-    6: ['I', 1]
-  };
+  if (num === 0) return "";
 
-  // Add subtractive rules manually
-  const subtractive = [
+  const symbols = [
+    ["M", 1000],
     ["CM", 900],
+    ["D", 500],
     ["CD", 400],
+    ["C", 100],
     ["XC", 90],
+    ["L", 50],
     ["XL", 40],
+    ["X", 10],
     ["IX", 9],
-    ["IV", 4]
+    ["V", 5],
+    ["IV", 4],
+    ["I", 1]
   ];
 
   let result = "";
 
-  // Handle subtractive first
-  for (let [roman, value] of subtractive) {
-    while (num >= value) {
-      result += roman;
-      num -= value;
-    }
-  }
-
-  // Now handle normal roman numerals from obj
-  for (let i = 0; i <= 6; i++) {
-    const roman = obj[i][0];
-    const value = obj[i][1];
-
+  for (let [roman, value] of symbols) {
     while (num >= value) {
       result += roman;
       num -= value;
@@ -43,8 +29,7 @@ function convertToRoman(num) {
   return result;
 }
 
-// Example run
-// console.log(convertToRoman(36)); // XXXVI
+// console.log(convertToRoman(36));
 
 // do not edit below this line
 module.exports = convertToRoman;
